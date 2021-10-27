@@ -1,7 +1,235 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-  }
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"cli": {
+		"packageManager": "yarn"
+	},
+	"newProjectRoot": "projects",
+	"projects": {
+		"mdmf-profile": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				},
+				"@schematics/angular:application": {
+					"strict": true
+				}
+			},
+			"root": "projects/mdmf-profile",
+			"sourceRoot": "projects/mdmf-profile/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/mdmf-profile",
+						"index": "projects/mdmf-profile/src/index.html",
+						"main": "projects/mdmf-profile/src/main.ts",
+						"polyfills": "projects/mdmf-profile/src/polyfills.ts",
+						"tsConfig": "projects/mdmf-profile/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/mdmf-profile/src/favicon.ico",
+							"projects/mdmf-profile/src/assets"
+						],
+						"styles": [
+							"projects/mdmf-profile/src/styles.scss"
+						],
+						"scripts": [],
+						"extraWebpackConfig": "projects/mdmf-profile/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "projects/mdmf-profile/src/environments/environment.ts",
+									"with": "projects/mdmf-profile/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "projects/mdmf-profile/webpack.prod.config.js"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "mdmf-profile:build:production",
+							"extraWebpackConfig": "projects/mdmf-profile/webpack.prod.config.js"
+						},
+						"development": {
+							"browserTarget": "mdmf-profile:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4201,
+						"extraWebpackConfig": "projects/mdmf-profile/webpack.config.js"
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"browserTarget": "mdmf-profile:build",
+						"extraWebpackConfig": "projects/mdmf-profile/webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/mdmf-profile/src/test.ts",
+						"polyfills": "projects/mdmf-profile/src/polyfills.ts",
+						"tsConfig": "projects/mdmf-profile/tsconfig.spec.json",
+						"karmaConfig": "projects/mdmf-profile/karma.conf.js",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/mdmf-profile/src/favicon.ico",
+							"projects/mdmf-profile/src/assets"
+						],
+						"styles": [
+							"projects/mdmf-profile/src/styles.scss"
+						],
+						"scripts": []
+					}
+				}
+			}
+		},
+		"mdmf-shell": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				},
+				"@schematics/angular:application": {
+					"strict": true
+				}
+			},
+			"root": "projects/mdmf-shell",
+			"sourceRoot": "projects/mdmf-shell/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/mdmf-shell",
+						"index": "projects/mdmf-shell/src/index.html",
+						"main": "projects/mdmf-shell/src/main.ts",
+						"polyfills": "projects/mdmf-shell/src/polyfills.ts",
+						"tsConfig": "projects/mdmf-shell/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/mdmf-shell/src/favicon.ico",
+							"projects/mdmf-shell/src/assets"
+						],
+						"styles": [
+							"projects/mdmf-shell/src/styles.scss"
+						],
+						"scripts": [],
+						"extraWebpackConfig": "projects/mdmf-shell/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "projects/mdmf-shell/src/environments/environment.ts",
+									"with": "projects/mdmf-shell/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "projects/mdmf-shell/webpack.prod.config.js"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "mdmf-shell:build:production",
+							"extraWebpackConfig": "projects/mdmf-shell/webpack.prod.config.js"
+						},
+						"development": {
+							"browserTarget": "mdmf-shell:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4200,
+						"extraWebpackConfig": "projects/mdmf-shell/webpack.config.js"
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"browserTarget": "mdmf-shell:build",
+						"extraWebpackConfig": "projects/mdmf-shell/webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/mdmf-shell/src/test.ts",
+						"polyfills": "projects/mdmf-shell/src/polyfills.ts",
+						"tsConfig": "projects/mdmf-shell/tsconfig.spec.json",
+						"karmaConfig": "projects/mdmf-shell/karma.conf.js",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/mdmf-shell/src/favicon.ico",
+							"projects/mdmf-shell/src/assets"
+						],
+						"styles": [
+							"projects/mdmf-shell/src/styles.scss"
+						],
+						"scripts": []
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "mdmf-profile"
 }

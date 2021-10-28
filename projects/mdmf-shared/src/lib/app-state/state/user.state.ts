@@ -4,7 +4,7 @@ import { AddUser, RemoveUser } from '../actions/user.action';
 import { Injectable } from '@angular/core';
 
 export class UserStateModel {
-  users: User[] = [];
+  users: User[];
 }
 
 /**

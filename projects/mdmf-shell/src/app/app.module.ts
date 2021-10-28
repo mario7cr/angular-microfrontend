@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
@@ -8,7 +8,7 @@ import { MdmfSharedModule } from 'projects/mdmf-shared/src/lib/modules/mdmf-shar
 import { NgxsModule } from '@ngxs/store';
 import { APP_ROUTES } from './app.routes';
 
-import { UserState } from 'mdmf-shared';
+import { MdmfStylesModule, UserState } from 'mdmf-shared';
 
 import { AppComponent } from './app.component';
 
@@ -24,10 +24,11 @@ export function initializeApp(
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(APP_ROUTES),
     NgxsModule.forRoot([UserState]),
     MdmfSharedModule,
+    MdmfStylesModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
   ],

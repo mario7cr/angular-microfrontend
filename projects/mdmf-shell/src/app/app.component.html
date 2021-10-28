@@ -1,17 +1,24 @@
-<nav>
-  <ul class="nav-list">
-    <li class="nav-item">
-      <a href="http://mellondev.net" target="_blank"
-        ><img width="148px" height="29px" src="../assets/md-shell-logo.png"
-      /></a>
-    </li>
-    <li class="nav-item"><a routerLink="home">Home</a></li>
-    <li class="nav-item" *ngFor="let microfrontend of mfService.microfrontends">
-      <a [routerLink]="microfrontend.routePath">
-        {{ microfrontend.displayName }}
+<header>
+  <nav>
+    <mat-toolbar color="primary">
+      <a mat-button routerLink="home">Home</a>
+      <ng-container *ngFor="let microfrontend of mfService.microfrontends">
+        <a mat-button [routerLink]="microfrontend.routePath">
+          {{ microfrontend.displayName }}
+        </a>
+      </ng-container>
+      <span class="spacer"></span>
+      <a mat-button href="https://github.com/mario7cr" target="_blank">
+        <img
+          width="22"
+          height="22"
+          src="../assets/github-circle-white-transparent.svg"
+          alt="Github logo"
+          class="self-center"
+        />
       </a>
-    </li>
-  </ul>
-</nav>
+    </mat-toolbar>
+  </nav>
+</header>
 
 <router-outlet></router-outlet>

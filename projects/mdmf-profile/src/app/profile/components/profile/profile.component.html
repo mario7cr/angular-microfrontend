@@ -1,4 +1,9 @@
-<div class="container">
+<div
+  class="container"
+  fxLayout="column"
+  fxLayoutAlign="start stretch"
+  fxLayoutGap="1rem"
+>
   <h2>Profile (Microfrontend)</h2>
   <p>
     This profile component is being remotely loaded into the application using
@@ -6,66 +11,68 @@
     frontend
   </p>
 
-  <div class="card">
-    <div class="card-body">
-      <form [formGroup]="angForm">
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="name"
-            placeholder="Name"
-            #name
-          />
-          <div
-            *ngIf="
-              angForm.controls['name'].invalid &&
-              (angForm.controls['name'].dirty ||
-                angForm.controls['name'].touched)
-            "
-            class="alert alert-danger"
-          >
-            <div *ngIf="angForm.controls['name'].errors?.required">
-              Name is required.
-            </div>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="profileForm" novalidate>
+        <div flexLayout="row" flexLayoutAlign="start center">
+          <div fxFlex="250px">
+            <mat-form-field fxFill appearance="standard">
+              <mat-label>Enter your name</mat-label>
+              <input matInput formControlName="name" required />
+              <mat-error
+                *ngIf="
+                  controls.name.invalid &&
+                  (controls.name.dirty || controls.name.touched)
+                "
+              >
+                Name is required.
+              </mat-error>
+            </mat-form-field>
           </div>
         </div>
-        <div class="form-group">
-          <input
-            type="email"
-            class="form-control"
-            formControlName="email"
-            placeholder="Email"
-            #email
-          />
-          <div
-            *ngIf="
-              angForm.controls['email'].invalid &&
-              (angForm.controls['email'].dirty ||
-                angForm.controls['email'].touched)
-            "
-            class="alert alert-danger"
-          >
-            <div *ngIf="angForm.controls['email'].errors?.required">
-              Email is required.
-            </div>
+        <div flexLayout="row" flexLayoutAlign="start center">
+          <div fxFlex="250px">
+            <mat-form-field fxFill appearance="standard">
+              <mat-label>Enter your email</mat-label>
+              <input
+                matInput
+                placeholder="your.email@example.com"
+                formControlName="email"
+                required
+              />
+              <mat-error
+                *ngIf="
+                  controls.email.invalid &&
+                  (controls.email.dirty || controls.email.touched)
+                "
+              >
+                <span *ngIf="controls.email.errors?.required">
+                  Email is required.
+                </span>
+                <span *ngIf="controls.email.errors?.email">
+                  Email invalid.
+                </span>
+              </mat-error>
+            </mat-form-field>
           </div>
         </div>
-        <div class="form-group">
+        <div flexLayout="row" flexLayoutAlign="start start" class="form-submit">
           <button
-            (click)="addUser(name.value, email.value)"
-            class="btn btn-primary"
-            [disabled]="angForm.pristine || angForm.invalid"
+            mat-raised-button
+            color="primary"
+            (click)="addUser(controls.name.value, controls.email.value)"
+            [disabled]="profileForm.pristine || profileForm.invalid"
           >
             Create User
           </button>
         </div>
       </form>
-    </div>
-  </div>
-
-  <br />
-  <lib-mdmf-shared></lib-mdmf-shared>
+    </mat-card-content>
+  </mat-card>
 
   <app-profile-list-user></app-profile-list-user>
+
+  <!--mat-card>
+    <lib-mdmf-shared></lib-mdmf-shared>
+  </mat-card-->
 </div>

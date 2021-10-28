@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { AddUser } from 'projects/mdmf-shared/src/lib/app-state/actions/user.action';
 import { User } from 'projects/mdmf-shared/src/lib/app-state/models/User';
@@ -7,15 +12,18 @@ import { User } from 'projects/mdmf-shared/src/lib/app-state/models/User';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  angForm: FormGroup;
+  profileForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.profileForm = this.createForm();
+  }
 
   ngOnInit(): void {}
 
-  constructor(private fb: FormBuilder, private store: Store) {
-    this.angForm = this.createForm();
+  get controls(): { [key: string]: AbstractControl } {
+    return this.profileForm.controls;
   }
 
   /**
@@ -24,7 +32,7 @@ export class ProfileComponent implements OnInit {
   createForm(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
     });
   }
 
@@ -34,13 +42,7 @@ export class ProfileComponent implements OnInit {
    * @param email: user's email
    */
   addUser(name: string, email: string): void {
-    this.store.dispatch(new AddUser({ name, email } as User));
-  }
-
-  /**
-   * Get the users for unit testing purposes
-   */
-  getUsers(): User[] {
-    return this.store.selectSnapshot<User[]>((state) => state.users.users);
+    this.store.dispatch(new AddUser({ name, email }));
+    this.profileForm.reset();
   }
 }

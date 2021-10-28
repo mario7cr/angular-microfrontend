@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
+import { AddUser } from 'mdmf-shared';
 import { RemoveUser } from 'projects/mdmf-shared/src/lib/app-state/actions/user.action';
 import { User } from 'projects/mdmf-shared/src/lib/app-state/models/User';
 import { UserState } from 'projects/mdmf-shared/src/lib/app-state/state/user.state';
@@ -7,10 +8,12 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile-list-user',
-  templateUrl: './list-user.component.html'
+  templateUrl: './list-user.component.html',
 })
 export class ListUserComponent implements OnInit {
-  @Select(UserState.getUsers) users: Observable<User[]>;
+  @Select(UserState.getUsers)
+  users: Observable<User[]>;
+  displayedColumns: string[] = ['delete', 'name', 'email'];
 
   constructor(private store: Store) {}
 

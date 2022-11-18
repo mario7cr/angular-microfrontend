@@ -21,11 +21,11 @@ The library. The most important think inside this library is the configuration f
 
 First of all, you need to be sure that you have installed NodeJs 14.19.2 or higher.
 
-1. Go to the workspace folder and install the dependencies: <code>npm install</code>;
-2. Now, you have to build the library, for that you can run: <code>npm run build:shared</code>;
-3. Once the library is buit, you can start to serve the application, you have to follow the following sequence for that:
-  1. Remotes first: <code>npm run start:profile</code>;
-  2. Host in the end: <code>npm run start:shell</code>;
+1.  Go to the workspace folder and install the dependencies: <code>npm install</code>;
+2.  Now, you have to build the library, for that you can run: <code>npm run build:shared</code>;
+3.  Once the library is buit, you can start to serve the application, you have to follow the following sequence for that:
+  * Remotes first: <code>npm run start:profile</code>;
+  * Host in the end: <code>npm run start:shell</code>;
   
 For this project there are some scripts pre-configured, in order to see them you can take a look at the package.json file.
 

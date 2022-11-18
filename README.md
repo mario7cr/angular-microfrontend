@@ -2,26 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.8.
 
-## Development server
+In this workspace you will find two applications and one library.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## MDMF-Shell
 
-## Code scaffolding
+The host/ shell application. Contains the logic to handle the remote imports.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## MDMF-Profile
 
-## Build
+The remote application. Contains the profile module that is shared with the host application.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## MDMF-Shared
 
-## Running unit tests
+The library. The most important think inside this library is the configuration for the Ngxs/store.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+# Executing the Application
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+First of all, you need to be sure that you have installed NodeJs 14.19.2 or higher.
 
-## Further help
+1. Go to the workspace folder and install the dependencies: <code>npm install</code>;
+2. Now, you have to build the library, for that you can run: <code>npm run build:shared</code>;
+3. Once the library is buit, you can start to serve the application, you have to follow the following sequence for that:
+  1. Remotes first: <code>npm run start:profile</code>;
+  2. Host in the end: <code>npm run start:shell</code>;
+  
+For this project there are some scripts pre-configured, in order to see them you can take a look at the package.json file.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
